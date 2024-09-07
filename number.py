@@ -9,16 +9,15 @@ class Number:
 
         returns: int
         """
-        pass
+        return self.value
 
     def is_odd(self):
         """
         Returns True if the number is odd, otherwise False.
 
         returns: bool
-
         """
-        pass
+        return self.value % 2 == 1
 
     def is_even(self):
         """
@@ -26,7 +25,7 @@ class Number:
 
         returns: bool
         """
-        pass
+        return self.value % 2 == 0
 
     def is_prime(self):
         """
@@ -34,7 +33,11 @@ class Number:
 
         returns: bool
         """
-        pass
+        c = 0
+        for i in range(1, self.value + 1):
+            if self.value % i:
+                c += 1
+        return c < 2
 
     def get_divisors(self):
         """
@@ -42,7 +45,11 @@ class Number:
 
         returns: list
         """
-        pass
+        list_divisors = []
+        for i in range(1, self.value + 1):
+            if self.value % i == 0:
+                list_divisors.append(i)
+        return list_divisors
 
     def get_length(self):
         """
@@ -50,7 +57,7 @@ class Number:
 
         returns: int
         """
-        pass
+        return (len(str(self.value)))
 
     def get_sum(self):
         """
@@ -58,7 +65,11 @@ class Number:
 
         returns: int
         """
-        pass
+        sum = 0
+        temp = str(self.value)
+        for i in range(len(temp)):
+            sum += int(temp[i])
+        return sum
 
     def get_reverse(self):
         """
@@ -66,7 +77,14 @@ class Number:
 
         returns: int
         """
-        pass
+        t = 0
+        temp = self.value
+        l = len(str(self.value))
+        for i in range(l):
+            t *= 10
+            t += temp % 10
+            temp //= 10
+        return t
 
     def is_palindrome(self):
         """
@@ -82,7 +100,10 @@ class Number:
 
         returns: list
         """
-        pass
+        list_digits = []
+        for i in str(self.value):
+            list_digits.append(int(i))
+        return list_digits
 
     def get_max(self):
         """
@@ -90,7 +111,10 @@ class Number:
 
         returns: int
         """
-        pass
+        list_digits = []
+        for i in str(self.value):
+            list_digits.append(int(i))
+        return max(list_digits)        
 
     def get_min(self):
         """
@@ -98,7 +122,10 @@ class Number:
 
         returns: int
         """
-        pass
+        list_digits = []
+        for i in str(self.value):
+            list_digits.append(int(i))
+        return min(list_digits)   
 
     def get_average(self):
         """
@@ -106,7 +133,13 @@ class Number:
 
         returns: float
         """
-        pass
+        if len(str(self.value)) == 1:
+            return self.value
+        sum = 0
+        for i in range(1, self.value + 1):
+            if self.value % i:
+                sum += i
+        return sum // len(str(self.value))
 
     def get_median(self):
         """
@@ -114,7 +147,13 @@ class Number:
 
         returns: float
         """
-        pass
+        l = len(str(self.value))
+        if l > 1:
+            val = sorted(str(self.value))
+            if len(val) % 2 == 0:
+                return int(val[l // 2])
+            else:
+                return (int(val[l // 2]) + int(val[l // 2 + 1])) // 2
 
     def get_range(self):
         """
@@ -122,7 +161,10 @@ class Number:
 
         returns: list
         """
-        pass
+        list_digits = []
+        for i in str(self.value):
+            list_digits.append(int(i))
+        return max(list_digits) - min(list_digits)   
 
     def get_frequency(self):
         """
@@ -130,8 +172,28 @@ class Number:
 
         returns: dict
         """
-        pass
+        temp = str(self.value)
+        freq = []
+        for i in temp:
+            freq.append(temp.count(i))
+        return list(set(freq))
     
 
 # Create a new instance of Number
 number = Number(3)
+print('the number = ', number.get_number())
+print('it is odd.', number.is_odd())
+print('it is even.', number.is_even())
+print('it is prime.', number.is_prime())
+print('the average = ', number.get_average())
+print('digits = ', number.get_digits())
+print('divisors = ', number.get_divisors())
+print('frequency = ', number.get_frequency())
+print('length = ', number.get_length())
+print('max = ', number.get_max())
+print('min = ', number.get_min())
+print('median = ', number.get_median())
+print('numbers -> ', number.get_number())
+print('range = ', number.get_range())
+print('reversed = ', number.get_reverse())
+print('sum = ', number.get_sum())
